@@ -8,7 +8,7 @@ exports.isGuest = (req, res, next) => {
 };
 
 exports.isLoggedIn = (req, res, next) => {
-	if (!req.session.user) {
+	if (req.session.user) {
 		return next();
 	} else {
 		req.flash('error', 'You need to log in first');

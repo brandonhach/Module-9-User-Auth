@@ -1,5 +1,10 @@
-
-<%- include('../partials/header.ejs')%>
-    <h2>Welcome, <%=user.firstName%></h2>
-    </div>
-    <%- include('../partials/footer.ejs')%>
+<%- include('../partials/header.ejs') %>
+<div>
+	<h2>Welcome, <%= user.firstName %></h2>
+	<% if(stories.length) { %> <% stories.forEach(story => { %>
+	<a href="/stories/<%= story.id %>"><p><%= story.title %></p></a>
+	<% }) %> <% } else { %>
+	<p>You have not created any stories</p>
+	<% } %>
+</div>
+<%- include('../partials/footer.ejs') %>

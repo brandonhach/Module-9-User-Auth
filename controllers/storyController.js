@@ -34,6 +34,7 @@ exports.show = (req, res, next) => {
 	}
 	model
 		.findById(id)
+		.populate('author')
 		.then((story) => {
 			if (story) {
 				return res.render('./story/show', { story });

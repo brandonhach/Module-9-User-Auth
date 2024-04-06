@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/storyController');
+const { isLoggedIn } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -7,14 +8,14 @@ const router = express.Router();
 router.get('/', controller.index);
 
 //GET /stories/new: send html form for creating a new story
-router.get('/new', controller.new);
+router.get('/new', isLoggedIn, controller.new);
 
 //POST /stories: create a new story
 
 router.post('/', controller.create);
 
 //GET /stories/:id: send details of story identified by id
-router.get('/:id', controller.show);
+router.get('/:id', isLoggedIn, controller.show);
 
 //GET /stories/:id/edit: send html form for editing an exising story
 router.get('/:id/edit', controller.edit);
